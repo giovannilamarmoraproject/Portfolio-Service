@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/portfolio
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 1MB
+
+rest:
+  scheduled:
+    CMS:
+      active: false
+      locale: "it-IT,en-GB"
+      cron: 0 0 1 * * MON
+      delay:
+        start: 5000
+  client:
+    contentful:
+      baseUrl: https://cdn.contentful.com
+      entries: /spaces/uptyiu46x1l9/environments/master/entries
+      authToken: ${CONTENTFUL_AUTH_TOKEN}
+
+app:
+  logTail:
+    active: false
