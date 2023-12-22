@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.giovannilamarmora.project.portfolio</groupId>
     <artifactId>Portfolio-Service</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <!-- <packaging>war</packaging> -->
     <packaging>jar</packaging>
     <name>Portfolio-Service</name>
@@ -125,6 +125,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>portfolio-service</finalName>
     </build>
 
 </project>
