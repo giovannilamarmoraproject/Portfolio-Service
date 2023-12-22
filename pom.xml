@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.giovannilamarmora.project.portfolio</groupId>
     <artifactId>Portfolio-Service</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <!-- <packaging>war</packaging> -->
     <packaging>jar</packaging>
     <name>Portfolio-Service</name>
@@ -20,6 +20,9 @@
         <spring.doc.version>1.6.14</spring.doc.version>
         <jakarta.validation.version>2.0.2</jakarta.validation.version>
         <jakarta.persistence.version>2.2.3</jakarta.persistence.version>
+        <logtail.version>0.1.0</logtail.version>
+        <logback.version>1.2.11</logback.version>
+        <resteasy.version>3.11.3.Final</resteasy.version>
     </properties>
     <dependencies>
         <dependency>
@@ -81,6 +84,29 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${spring.doc.version}</version>
         </dependency>
+
+        <!-- LogTail LOGS -->
+        <dependency>
+            <groupId>com.logtail</groupId>
+            <artifactId>logback-logtail</artifactId>
+            <version>${logtail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>3.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>${resteasy.version}</version>
+        </dependency>
+        <!-- END LogTail LOGS -->
 
     </dependencies>
 

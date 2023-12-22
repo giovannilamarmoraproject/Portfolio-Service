@@ -84,7 +84,7 @@ public class CronCMSData {
             LOG.info("Found {} data of Contentful Data", getCMSData.size());
             appService.saveCMSDataList(getCMSData, local);
 
-            if (index.getAndIncrement() != getCMSData.size() - 1) threadSeep();
+            if (index.getAndIncrement() != locales.size() - 1) threadSeep();
           });
     } catch (Exception e) {
       LOG.error(

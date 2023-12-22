@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+  backend-service:
+    container_name: portfolio-service
+    image: ${DOCKER_REPOSITORY}:latest
+    hostname: portfolio.service
+    ports:
+      - "8006:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - LOGTAIL_LOGS=${LOGTAIL_LOGS}
+      - LOGTAIL_APP_NAME=${LOGTAIL_APP_NAME}
+      - CONTENTFUL_AUTH_TOKEN=${CONTENTFUL_AUTH_TOKEN}
+    networks:
+      docker-network:
+        aliases:
+          - portfolio.service
+
+networks:
+  docker-network:
+    external: true

@@ -27,8 +27,6 @@ rest:
       active: true
       locale: "it-IT,en-GB"
       cron: 0 0 1 * * MON
-      delay:
-        start: 5000
   client:
     contentful:
       baseUrl: https://cdn.contentful.com
@@ -37,4 +35,4 @@ rest:
 
 app:
   logTail:
-    active: false
+    active: true
