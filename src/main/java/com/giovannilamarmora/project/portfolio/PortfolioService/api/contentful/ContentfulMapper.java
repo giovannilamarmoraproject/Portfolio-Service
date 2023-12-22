@@ -36,11 +36,11 @@ public class ContentfulMapper {
                                         .forEach(
                                             (content1) -> {
                                               if (index == 0) {
-                                                description.append(content1.get("value"));
+                                                description.append(content1.get("value").asText());
                                               } else {
                                                 description
                                                     .append("<br>")
-                                                    .append(content1.get("value"));
+                                                    .append(content1.get("value").asText());
                                               }
                                             });
                                   });
