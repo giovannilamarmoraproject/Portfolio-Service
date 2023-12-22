@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  sql:
+    init:
+      mode: never
+
+rest:
+  scheduled:
+    CMS:
+      active: true
+      locale: "it-IT,en-GB"
+      cron: 0 0 1 * * MON
+  client:
+    contentful:
+      baseUrl: https://cdn.contentful.com
+      entries: /spaces/uptyiu46x1l9/environments/master/entries
+      authToken: authToken
+
+app:
+  logTail:
+    active: false
