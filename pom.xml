@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.giovannilamarmora.project.portfolio</groupId>
     <artifactId>Portfolio-Service</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
     <!-- <packaging>war</packaging> -->
     <packaging>jar</packaging>
     <name>Portfolio-Service</name>
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>io.github.giovannilamarmora.utils</groupId>
             <artifactId>utils-code</artifactId>
-            <version>0.2.24</version>
+            <version>0.2.62</version>
         </dependency>
         <!--<dependency>
             <groupId>io.github.giovannilamarmora.utils</groupId>
@@ -79,34 +79,6 @@
             <version>0.2.25</version>
             <systemPath>C:/Users/giola/Documents/Personal Project/Utils/target/utils-code-0.2.25.jar</systemPath>
         </dependency>-->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>${spring.doc.version}</version>
-        </dependency>
-
-        <!-- LogTail LOGS -->
-        <dependency>
-            <groupId>com.logtail</groupId>
-            <artifactId>logback-logtail</artifactId>
-            <version>${logtail.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.janino</groupId>
-            <artifactId>janino</artifactId>
-            <version>3.0.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-            <version>${resteasy.version}</version>
-        </dependency>
-        <!-- END LogTail LOGS -->
 
     </dependencies>
 

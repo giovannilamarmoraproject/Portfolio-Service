@@ -23,7 +23,7 @@ public class CMSMapper {
           .findAndRegisterModules()
           .enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_MAPPER)
+  @LogInterceptor(type = LogTimeTracker.ActionType.MAPPER)
   public List<CMSData> fromCMSEntitiesToCMSDataList(List<CMSEntity> cmsEntities) {
     return cmsEntities.stream()
         .map(
@@ -42,7 +42,7 @@ public class CMSMapper {
         .collect(Collectors.toList());
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_MAPPER)
+  @LogInterceptor(type = LogTimeTracker.ActionType.MAPPER)
   public List<CMSEntity> fromCMSDataListToCMSEntities(List<CMSData> cmsDataList, String locale) {
     return cmsDataList.stream()
         .map(

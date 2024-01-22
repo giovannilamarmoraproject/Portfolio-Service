@@ -4,7 +4,7 @@ import com.giovannilamarmora.project.portfolio.PortfolioService.api.ExternalServ
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.CMSException;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.CMSService;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.DTO.CMSData;
-import com.giovannilamarmora.project.portfolio.PortfolioService.generic.Response;
+import io.github.giovannilamarmora.utils.generic.Response;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import io.github.giovannilamarmora.utils.interceptors.Logged;
@@ -25,7 +25,7 @@ public class AppService {
   @Autowired private CMSService cmsService;
   @Autowired private ExternalService externalService;
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public ResponseEntity<Response> getCMSData(String locale) {
     LOG.info("Getting CMS Data for {}", locale);
     List<CMSData> cmsData = cmsService.getCMSData(locale);
@@ -37,7 +37,7 @@ public class AppService {
     return ResponseEntity.ok(response);
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public ResponseEntity<Response> getCMSDataList() {
     List<CMSData> cmsData = cmsService.getCMSDataList();
 
@@ -48,7 +48,7 @@ public class AppService {
     return ResponseEntity.ok(response);
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public List<CMSData> getContentfulData(String locale) {
     ResponseEntity<List<CMSData>> cmsData = externalService.getAndMapCMSData(locale);
 
@@ -59,7 +59,7 @@ public class AppService {
     return cmsData.getBody();
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public void saveCMSDataList(List<CMSData> cmsData, String locale) {
     if (cmsData == null || cmsData.isEmpty()) {
       LOG.error("Empty data");

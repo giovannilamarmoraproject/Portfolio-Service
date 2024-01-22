@@ -48,7 +48,7 @@ public class ContentfulClient {
     webClientRest.init(builder);
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_EXTERNAL)
+  @LogInterceptor(type = LogTimeTracker.ActionType.EXTERNAL)
   public ResponseEntity<Contentful> getCMSData(String locale) {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);

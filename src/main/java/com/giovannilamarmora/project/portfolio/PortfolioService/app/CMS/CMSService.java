@@ -20,7 +20,7 @@ public class CMSService {
   @Autowired private CMSCacheService cmsCacheService;
   @Autowired private CMSMapper cmsMapper;
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public List<CMSData> getCMSData(String locale) {
     List<CMSEntity> cmsEntities = cmsCacheService.findAllByLocale(locale);
     if (cmsEntities == null || cmsEntities.isEmpty()) {
@@ -31,7 +31,7 @@ public class CMSService {
     return cmsMapper.fromCMSEntitiesToCMSDataList(cmsEntities);
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public List<CMSData> getCMSDataList() {
     List<CMSEntity> cmsEntities = cmsCacheService.findAll();
     if (cmsEntities == null || cmsEntities.isEmpty()) {
@@ -42,7 +42,7 @@ public class CMSService {
     return cmsMapper.fromCMSEntitiesToCMSDataList(cmsEntities);
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public void saveCMSDataList(List<CMSData> cmsData, String locale) {
     if (cmsData == null || cmsData.isEmpty()) {
       LOG.error("An error occurred during save Data into Database, cmsData is empty");
@@ -54,7 +54,7 @@ public class CMSService {
     LOG.info("CMSData successfully saved!");
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SERVICE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
   public void deleteCMSData() {
     cmsCacheService.deleteAll();
     LOG.info("CMSData successfully deleted!");
