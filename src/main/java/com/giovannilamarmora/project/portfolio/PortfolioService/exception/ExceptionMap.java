@@ -20,7 +20,7 @@ public enum ExceptionMap implements ExceptionCode {
     }
 
     @Override
-    public String exceptionName() {
+    public String exception() {
         return this.exceptionName;
     }
 
