@@ -23,13 +23,13 @@ public class CMSCacheService {
   @Autowired private ICMSDAO cmsDao;
 
   @Caching(cacheable = @Cacheable(value = CMS_DATA_CACHE, key = "#locale"))
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_CACHE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.CACHE)
   public List<CMSEntity> findAllByLocale(String locale) {
     LOG.info("[Caching] CMSEntity into Database for locale {}", locale);
     return cmsDao.findAllByLocale(locale);
   }
 
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_CACHE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.CACHE)
   public List<CMSEntity> findAll() {
     return cmsDao.findAll();
   }
@@ -45,7 +45,7 @@ public class CMSCacheService {
   }
 
   @Caching(evict = {@CacheEvict(value = CMS_DATA_CACHE)})
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_CACHE)
+  @LogInterceptor(type = LogTimeTracker.ActionType.CACHE)
   public void deleteCache() {
     LOG.info("[Caching] Deleting cache for {}", CMS_DATA_CACHE);
     Objects.requireNonNull(cacheManager.getCache(CMS_DATA_CACHE)).clear();

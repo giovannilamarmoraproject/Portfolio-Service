@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: Portfolio Service
+    starter-log: true
   datasource:
     url: jdbc:h2:mem:mydb
     username: sa
@@ -16,6 +19,16 @@ spring:
     multipart:
       max-file-size: 2MB
       max-request-size: 2MB
+
+logging:
+  level:
+    com.giovannilamarmora.project.portfolio.PortfolioService: INFO
+    web: INFO
+    root: INFO
+    org:
+      springframework:
+        web: INFO
+      hibernate: ERROR
 
 rest:
   scheduled:

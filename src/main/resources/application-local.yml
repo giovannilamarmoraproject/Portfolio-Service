@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: Portfolio Service
+    starter-log: true
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/portfolio
@@ -21,6 +24,17 @@ spring:
       max-file-size: 1MB
       max-request-size: 1MB
 
+logging:
+  level:
+    com.giovannilamarmora.project.portfolio.PortfolioService: DEBUG
+    io.github.giovannilamarmora.utils: DEBUG
+    web: INFO
+    root: INFO
+    org:
+      springframework:
+        web: INFO
+      hibernate: ERROR
+
 rest:
   scheduled:
     CMS:
@@ -36,3 +50,7 @@ rest:
 app:
   logTail:
     active: false
+  exception:
+    stacktrace:
+      utilsException:
+        active: true

@@ -1,8 +1,9 @@
 package com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.giovannilamarmora.project.portfolio.PortfolioService.generic.GenericEntity;
 import javax.persistence.*;
+
+import io.github.giovannilamarmora.utils.generic.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

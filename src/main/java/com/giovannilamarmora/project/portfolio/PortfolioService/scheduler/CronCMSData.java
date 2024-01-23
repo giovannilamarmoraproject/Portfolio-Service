@@ -7,7 +7,7 @@ import com.giovannilamarmora.project.portfolio.PortfolioService.app.AppService;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.CMSException;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.CMSService;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.DTO.CMSData;
-import com.giovannilamarmora.project.portfolio.PortfolioService.generic.Response;
+import io.github.giovannilamarmora.utils.generic.Response;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import org.slf4j.Logger;
@@ -51,7 +51,7 @@ public class CronCMSData {
   }
 
   @Scheduled(cron = "${rest.scheduled.CMS.cron}")
-  @LogInterceptor(type = LogTimeTracker.ActionType.APP_SCHEDULER)
+  @LogInterceptor(type = LogTimeTracker.ActionType.SCHEDULER)
   public void scheduleAllCMSData() {
     LOG.info("Scheduler Started at {}", LocalDateTime.now());
 
@@ -115,7 +115,6 @@ public class CronCMSData {
                 fc);
         });
   }
-
 
   private void threadSeep() {
     try {

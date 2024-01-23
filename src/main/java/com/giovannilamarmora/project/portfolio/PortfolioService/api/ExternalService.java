@@ -5,7 +5,7 @@ import com.giovannilamarmora.project.portfolio.PortfolioService.api.contentful.C
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.contentful.ContentfulMapper;
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.contentful.model.Contentful;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.DTO.CMSData;
-import com.giovannilamarmora.project.portfolio.PortfolioService.generic.Response;
+import io.github.giovannilamarmora.utils.generic.Response;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import io.github.giovannilamarmora.utils.interceptors.Logged;
@@ -27,7 +27,7 @@ public class ExternalService {
     @Autowired private ContentfulClient contentfulClient;
     @Autowired private ContentfulMapper contentfulMapper;
 
-    @LogInterceptor(type = LogTimeTracker.ActionType.APP_EXTERNAL)
+    @LogInterceptor(type = LogTimeTracker.ActionType.EXTERNAL)
     public ResponseEntity<List<CMSData>> getAndMapCMSData(String locale) {
         ResponseEntity<Contentful> responseEntity = contentfulClient.getCMSData(locale);
 
