@@ -1,3 +1,4 @@
+env: ${APP_ENV:Local} # Used for Google Cloud LOG
 spring:
   application:
     name: Portfolio Service
@@ -20,7 +21,20 @@ spring:
       max-file-size: 2MB
       max-request-size: 2MB
 
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+
+filter:
+  requestResponse:
+    enabled: true
+    shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/images/*,*/favicon.ico"
+
 logging:
+  config: classpath:logback-spring.xml # classpath:logback-google.xml, classpath:logback-logtail.xml
   level:
     com.giovannilamarmora.project.portfolio.PortfolioService: INFO
     web: INFO
@@ -43,5 +57,10 @@ rest:
       authToken: ${CONTENTFUL_AUTH_TOKEN}
 
 app:
-  logTail:
-    active: false
+  version: @project.version@ # Show Project Version
+  shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
+  exception:
+    stacktrace: true # Active StackTrace in Response
+  # Cors status
+  cors: # Disabled
+    enabled: false
