@@ -6,6 +6,7 @@ import com.giovannilamarmora.project.portfolio.PortfolioService.exception.Except
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import io.github.giovannilamarmora.utils.logger.LoggerFilter;
+import java.util.List;
 import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -27,5 +28,20 @@ public class StrapiValidator {
           ExceptionMap.ERR_STRAPI_404, ExceptionMap.ERR_STRAPI_404.getMessage());
     }
     return strapiResponseResponseEntity.getBody().getData().getFirst().getAttributes();
+  }
+
+  @LogInterceptor(type = LogTimeTracker.ActionType.VALIDATOR)
+  public static List<StrapiPortfolio> validateAndReturnStrapiPortfolioList(
+      ResponseEntity<StrapiResponse> strapiResponseResponseEntity) {
+    if (!strapiResponseResponseEntity.hasBody()
+        || ObjectUtils.isEmpty(strapiResponseResponseEntity.getBody())
+        || strapiResponseResponseEntity.getBody().getData().isEmpty()) {
+      LOG.error("An error happen during get portfolio data on strapi, data not found");
+      throw new StrapiException(
+          ExceptionMap.ERR_STRAPI_404, ExceptionMap.ERR_STRAPI_404.getMessage());
+    }
+    return strapiResponseResponseEntity.getBody().getData().stream()
+        .map(StrapiResponse.StrapiData::getAttributes)
+        .toList();
   }
 }

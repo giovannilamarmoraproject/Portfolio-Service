@@ -3,6 +3,7 @@ package com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi;
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiPortfolio;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -21,26 +22,26 @@ public class StrapiService {
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
-  public Mono<StrapiPortfolio> getPortfolioWorks(String locale) {
+  public Mono<List<StrapiPortfolio>> getPortfolioWorks(String locale) {
     return strapiClient
         .getPortfolioWorks(locale)
-        .map(StrapiValidator::validateAndReturnStrapiPortfolio)
+        .map(StrapiValidator::validateAndReturnStrapiPortfolioList)
         .doOnError(StrapiException::validateAndReturnError);
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
-  public Mono<StrapiPortfolio> getPortfolioCourses(String locale) {
+  public Mono<List<StrapiPortfolio>> getPortfolioCourses(String locale) {
     return strapiClient
         .getPortfolioCourses(locale)
-        .map(StrapiValidator::validateAndReturnStrapiPortfolio)
+        .map(StrapiValidator::validateAndReturnStrapiPortfolioList)
         .doOnError(StrapiException::validateAndReturnError);
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
-  public Mono<StrapiPortfolio> getPortfolioProjects(String locale) {
+  public Mono<List<StrapiPortfolio>> getPortfolioProjects(String locale) {
     return strapiClient
         .getPortfolioProjects(locale)
-        .map(StrapiValidator::validateAndReturnStrapiPortfolio)
+        .map(StrapiValidator::validateAndReturnStrapiPortfolioList)
         .doOnError(StrapiException::validateAndReturnError);
   }
 }

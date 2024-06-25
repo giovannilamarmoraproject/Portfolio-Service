@@ -55,7 +55,7 @@ public class StrapiClient {
   public Mono<ResponseEntity<StrapiResponse>> getPortfolioData(String locale) {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
-    params.put("populate", "*");
+    // params.put("populate", "*");
 
     HttpHeaders headers = new HttpHeaders();
     headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
@@ -73,7 +73,7 @@ public class StrapiClient {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
     params.put("sort[0]", "date_to:desc");
-    params.put("populate", "*");
+    // params.put("populate", "*");
 
     HttpHeaders headers = new HttpHeaders();
     headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
@@ -91,7 +91,7 @@ public class StrapiClient {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
     params.put("sort[0]", "date_to:desc");
-    params.put("populate", "*");
+    // params.put("populate", "*");
 
     HttpHeaders headers = new HttpHeaders();
     headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
@@ -109,7 +109,7 @@ public class StrapiClient {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
     params.put("sort[0]", "priority:desc");
-    params.put("populate", "*");
+    // params.put("populate", "*");
 
     HttpHeaders headers = new HttpHeaders();
     headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
