@@ -73,6 +73,9 @@ rest:
 app:
   version: @project.version@ # Show Project Version
   shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
+  cache:
+    active: false
+    cron: 0 0 1 * * *
   exception:
     stacktrace: true # Active StackTrace in Response
   # Cors status

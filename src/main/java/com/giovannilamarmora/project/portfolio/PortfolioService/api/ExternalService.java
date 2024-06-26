@@ -8,6 +8,7 @@ import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.Strap
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiPortfolio;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.DTO.CMSData;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.model.PortfolioData;
+import com.giovannilamarmora.project.portfolio.PortfolioService.cache.CmsService;
 import io.github.giovannilamarmora.utils.generic.Response;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
@@ -24,7 +25,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Logged
-public class ExternalService {
+public class ExternalService implements CmsService {
   private final Logger LOG = LoggerFactory.getLogger(this.getClass());
   @Autowired private ContentfulClient contentfulClient;
   @Autowired private ContentfulMapper contentfulMapper;
@@ -49,6 +50,7 @@ public class ExternalService {
     return ResponseEntity.ok(cmsData);
   }
 
+  @Override
   @LogInterceptor(type = LogTimeTracker.ActionType.EXTERNAL)
   public Mono<PortfolioData> getAndMapPortfolioStrapiData(String locale) {
     Mono<StrapiPortfolio> portfolioDataMono = strapiService.getPortfolioData(locale);

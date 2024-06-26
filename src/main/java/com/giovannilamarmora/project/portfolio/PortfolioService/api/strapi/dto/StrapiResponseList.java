@@ -1,6 +1,7 @@
 package com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StrapiResponse {
-  private StrapiData data;
+public class StrapiResponseList {
+  private List<StrapiData> data;
 
   @Builder
   @Data

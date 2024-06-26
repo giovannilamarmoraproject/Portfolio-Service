@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @Logged
 @RestController
@@ -26,5 +27,14 @@ public class AppController {
   @LogInterceptor(type = LogTimeTracker.ActionType.CONTROLLER)
   public ResponseEntity<Response> getData(@RequestParam(value = "locale") String locale) {
     return appService.getCMSData(locale);
+  }
+
+  @GetMapping(value = "/portfolio/data", produces = MediaType.APPLICATION_JSON_VALUE)
+  @Tag(name = "App", description = "API GET CMS Data")
+  @Operation(description = "API GET CMS Data", tags = "App")
+  @LogInterceptor(type = LogTimeTracker.ActionType.CONTROLLER)
+  public Mono<ResponseEntity<Response>> getPortfolioData(
+      @RequestParam(value = "locale") String locale) {
+    return appService.getPortfolioData(locale);
   }
 }

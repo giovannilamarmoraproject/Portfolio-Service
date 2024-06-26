@@ -1,6 +1,7 @@
 package com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi;
 
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiResponse;
+import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiResponseList;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import io.github.giovannilamarmora.utils.interceptors.Logged;
@@ -69,7 +70,7 @@ public class StrapiClient {
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.EXTERNAL)
-  public Mono<ResponseEntity<StrapiResponse>> getPortfolioWorks(String locale) {
+  public Mono<ResponseEntity<StrapiResponseList>> getPortfolioWorks(String locale) {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
     params.put("sort[0]", "date_to:desc");
@@ -83,11 +84,11 @@ public class StrapiClient {
         HttpMethod.GET,
         UtilsUriBuilder.buildUri(portfolioWorkUrl, params),
         headers,
-        StrapiResponse.class);
+        StrapiResponseList.class);
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.EXTERNAL)
-  public Mono<ResponseEntity<StrapiResponse>> getPortfolioCourses(String locale) {
+  public Mono<ResponseEntity<StrapiResponseList>> getPortfolioCourses(String locale) {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
     params.put("sort[0]", "date_to:desc");
@@ -101,11 +102,11 @@ public class StrapiClient {
         HttpMethod.GET,
         UtilsUriBuilder.buildUri(portfolioCourseUrl, params),
         headers,
-        StrapiResponse.class);
+        StrapiResponseList.class);
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.EXTERNAL)
-  public Mono<ResponseEntity<StrapiResponse>> getPortfolioProjects(String locale) {
+  public Mono<ResponseEntity<StrapiResponseList>> getPortfolioProjects(String locale) {
     Map<String, Object> params = new HashMap<>();
     params.put("locale", locale);
     params.put("sort[0]", "priority:desc");
@@ -117,8 +118,8 @@ public class StrapiClient {
 
     return webClientRest.perform(
         HttpMethod.GET,
-        UtilsUriBuilder.buildUri(portfolioWorkUrl, params),
+        UtilsUriBuilder.buildUri(portfolioProjectUrl, params),
         headers,
-        StrapiResponse.class);
+        StrapiResponseList.class);
   }
 }

@@ -2,6 +2,7 @@ package com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi;
 
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiPortfolio;
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiResponse;
+import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiResponseList;
 import com.giovannilamarmora.project.portfolio.PortfolioService.exception.ExceptionMap;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
@@ -22,17 +23,17 @@ public class StrapiValidator {
       ResponseEntity<StrapiResponse> strapiResponseResponseEntity) {
     if (!strapiResponseResponseEntity.hasBody()
         || ObjectUtils.isEmpty(strapiResponseResponseEntity.getBody())
-        || strapiResponseResponseEntity.getBody().getData().isEmpty()) {
+        || ObjectUtils.isEmpty(strapiResponseResponseEntity.getBody().getData())) {
       LOG.error("An error happen during get portfolio data on strapi, data not found");
       throw new StrapiException(
           ExceptionMap.ERR_STRAPI_404, ExceptionMap.ERR_STRAPI_404.getMessage());
     }
-    return strapiResponseResponseEntity.getBody().getData().getFirst().getAttributes();
+    return strapiResponseResponseEntity.getBody().getData().getAttributes();
   }
 
   @LogInterceptor(type = LogTimeTracker.ActionType.VALIDATOR)
   public static List<StrapiPortfolio> validateAndReturnStrapiPortfolioList(
-      ResponseEntity<StrapiResponse> strapiResponseResponseEntity) {
+      ResponseEntity<StrapiResponseList> strapiResponseResponseEntity) {
     if (!strapiResponseResponseEntity.hasBody()
         || ObjectUtils.isEmpty(strapiResponseResponseEntity.getBody())
         || strapiResponseResponseEntity.getBody().getData().isEmpty()) {
@@ -41,7 +42,7 @@ public class StrapiValidator {
           ExceptionMap.ERR_STRAPI_404, ExceptionMap.ERR_STRAPI_404.getMessage());
     }
     return strapiResponseResponseEntity.getBody().getData().stream()
-        .map(StrapiResponse.StrapiData::getAttributes)
+        .map(StrapiResponseList.StrapiData::getAttributes)
         .toList();
   }
 }
