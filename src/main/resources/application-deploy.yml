@@ -58,7 +58,7 @@ rest:
   client:
     strapi:
       active: true
-      baseUrl: https://strapi.giovannilamarmora.com
+      baseUrl: http://app.strapi.cms:1337
       bearer: ${STRAPI_AUTH_TOKEN}
       path:
         portfolioConfig: /api/portfolio-data
