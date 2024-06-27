@@ -10,6 +10,11 @@ spring:
     init:
       mode: never
 
+filter:
+  requestResponse:
+    enabled: false
+    shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/images/*,*/favicon.ico"
+
 rest:
   scheduled:
     CMS:
@@ -17,11 +22,28 @@ rest:
       locale: "it-IT,en-GB"
       cron: 0 0 1 * * MON
   client:
+    strapi:
+      active: true
+      baseUrl: http://strapi.com
+      bearer: bearer
+      path:
+        portfolioConfig: /api/portfolio-data
+        portfolioWork: /api/portfolio-works
+        portfolioCourse: /api/portfolio-courses
+        portfolioProject: /api/portfolio-projects
     contentful:
       baseUrl: https://cdn.contentful.com
       entries: /spaces/uptyiu46x1l9/environments/master/entries
       authToken: authToken
 
 app:
-  logTail:
+  version: 1.0.0
+  shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
+  cache:
     active: false
+    cron: 0 0 1 * * *
+  exception:
+    stacktrace: true # Active StackTrace in Response
+  # Cors status
+  cors: # Disabled
+    enabled: false
