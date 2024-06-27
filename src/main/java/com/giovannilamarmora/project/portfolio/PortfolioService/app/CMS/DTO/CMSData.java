@@ -2,12 +2,12 @@ package com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.github.giovannilamarmora.utils.generic.GenericDTO;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @EqualsAndHashCode(callSuper = true)

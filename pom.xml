@@ -5,24 +5,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
+        <version>3.2.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.giovannilamarmora.project.portfolio</groupId>
     <artifactId>Portfolio-Service</artifactId>
-    <version>0.5.6</version>
+    <version>0.6.0</version>
     <!-- <packaging>war</packaging> -->
     <packaging>jar</packaging>
     <name>Portfolio-Service</name>
     <description>The services of Portfolio WebApp</description>
     <properties>
-        <java.version>11</java.version>
-        <spring.doc.version>1.6.14</spring.doc.version>
-        <jakarta.validation.version>2.0.2</jakarta.validation.version>
-        <jakarta.persistence.version>2.2.3</jakarta.persistence.version>
-        <logtail.version>0.1.0</logtail.version>
-        <logback.version>1.2.11</logback.version>
-        <resteasy.version>3.11.3.Final</resteasy.version>
+        <java.version>22</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -36,11 +30,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>${jakarta.validation.version}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -60,15 +49,8 @@
         <dependency>
             <groupId>io.github.giovannilamarmora.utils</groupId>
             <artifactId>utils-code</artifactId>
-            <version>0.2.62</version>
+            <version>1.0.21</version>
         </dependency>
-        <!--<dependency>
-            <groupId>io.github.giovannilamarmora.utils</groupId>
-            <artifactId>utils-code</artifactId>
-            <scope>system</scope>
-            <version>0.2.25</version>
-            <systemPath>C:/Users/giola/Documents/Personal Project/Utils/target/utils-code-0.2.25.jar</systemPath>
-        </dependency>-->
 
     </dependencies>
 
