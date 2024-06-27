@@ -20,6 +20,7 @@ services:
       - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - CACHE_ENABLE=${CACHE_ENABLE}
       - APP_ENV=${APP_ENV}
+      - STRAPI_AUTH_TOKEN=${STRAPI_AUTH_TOKEN}
     networks:
       docker-network:
         aliases:

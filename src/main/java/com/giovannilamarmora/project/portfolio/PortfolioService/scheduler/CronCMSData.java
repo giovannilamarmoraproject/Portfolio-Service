@@ -10,6 +10,13 @@ import com.giovannilamarmora.project.portfolio.PortfolioService.app.CMS.DTO.CMSD
 import io.github.giovannilamarmora.utils.generic.Response;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +24,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @Component
 public class CronCMSData {
@@ -47,7 +46,7 @@ public class CronCMSData {
   @PostConstruct
   public void scheduleAtBoot() {
     LOG.info("Scheduling at application startup");
-    scheduleAllCMSData();
+    //scheduleAllCMSData();
   }
 
   @Scheduled(cron = "${rest.scheduled.CMS.cron}")
