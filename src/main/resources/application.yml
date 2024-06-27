@@ -1,3 +1,4 @@
+env: ${APP_ENV:Local} # Used for Google Cloud LOG
 spring:
   application:
     name: Portfolio Service
@@ -20,7 +21,20 @@ spring:
       max-file-size: 2MB
       max-request-size: 2MB
 
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+
+filter:
+  requestResponse:
+    enabled: true
+    shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/images/*,*/favicon.ico"
+
 logging:
+  config: classpath:logback-spring.xml # classpath:logback-google.xml, classpath:logback-logtail.xml
   level:
     com.giovannilamarmora.project.portfolio.PortfolioService: INFO
     web: INFO
@@ -37,11 +51,28 @@ rest:
       locale: "it-IT,en-GB"
       cron: 0 0 1 * * MON
   client:
+    strapi:
+      active: true
+      baseUrl: https://strapi.giovannilamarmora.com
+      bearer: ${STRAPI_AUTH_TOKEN}
+      path:
+        portfolioConfig: /api/portfolio-data
+        portfolioWork: /api/portfolio-works
+        portfolioCourse: /api/portfolio-courses
+        portfolioProject: /api/portfolio-projects
     contentful:
       baseUrl: https://cdn.contentful.com
       entries: /spaces/uptyiu46x1l9/environments/master/entries
       authToken: ${CONTENTFUL_AUTH_TOKEN}
 
 app:
-  logTail:
+  version: @project.version@ # Show Project Version
+  shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
+  cache:
     active: false
+    cron: 0 0 1 * * *
+  exception:
+    stacktrace: true # Active StackTrace in Response
+  # Cors status
+  cors: # Disabled
+    enabled: false
