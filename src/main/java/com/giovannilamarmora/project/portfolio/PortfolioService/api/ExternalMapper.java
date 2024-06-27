@@ -22,9 +22,9 @@ public class ExternalMapper {
     List<PortfolioWork> portfolioWorkList =
         portfolioWorks.stream().map(ExternalMapper::mapStrapiWorkToPortfolioWork).toList();
     List<PortfolioCourse> portfolioCourseList =
-        portfolioWorks.stream().map(ExternalMapper::mapStrapiCourseToPortfolioCourse).toList();
+        portfolioCourses.stream().map(ExternalMapper::mapStrapiCourseToPortfolioCourse).toList();
     List<PortfolioProject> portfolioProjectList =
-        portfolioWorks.stream().map(ExternalMapper::mapStrapiProjectToPortfolioProject).toList();
+        portfolioProjects.stream().map(ExternalMapper::mapStrapiProjectToPortfolioProject).toList();
     return new PortfolioData(
         portfolioData.getCurriculum_url(),
         portfolioData.getProfilePhoto_url(),
