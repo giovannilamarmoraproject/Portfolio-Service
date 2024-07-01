@@ -21,20 +21,20 @@ public class AppController {
   @Autowired private AppService appService;
   @Autowired private ExternalService externalService;
 
-  @GetMapping(value = "/CMS/data", produces = MediaType.APPLICATION_JSON_VALUE)
-  @Tag(name = "App", description = "API GET CMS Data")
-  @Operation(description = "API GET CMS Data", tags = "App")
-  @LogInterceptor(type = LogTimeTracker.ActionType.CONTROLLER)
-  public ResponseEntity<Response> getData(@RequestParam(value = "locale") String locale) {
-    return appService.getCMSData(locale);
-  }
-
   @GetMapping(value = "/portfolio/data", produces = MediaType.APPLICATION_JSON_VALUE)
-  @Tag(name = "App", description = "API GET CMS Data")
-  @Operation(description = "API GET CMS Data", tags = "App")
+  @Tag(name = "App", description = "API GET Portfolio Data")
+  @Operation(description = "API GET Portfolio Data", tags = "App")
   @LogInterceptor(type = LogTimeTracker.ActionType.CONTROLLER)
   public Mono<ResponseEntity<Response>> getPortfolioData(
       @RequestParam(value = "locale") String locale) {
     return appService.getPortfolioData(locale);
+  }
+
+  @DeleteMapping(value = "/cache/evict", produces = MediaType.APPLICATION_JSON_VALUE)
+  @Tag(name = "App", description = "API Delete cache")
+  @Operation(description = "API Delete cache", tags = "App")
+  @LogInterceptor(type = LogTimeTracker.ActionType.CONTROLLER)
+  public Mono<ResponseEntity<Response>> evictCache() {
+    return appService.deleteCache();
   }
 }
