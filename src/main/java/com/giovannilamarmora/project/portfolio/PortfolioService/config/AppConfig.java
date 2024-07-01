@@ -18,12 +18,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableCaching
 @OpenAPIDefinition(
-    info = @Info(title = "Email Sender Swagger", version = "1.0.0"),
+    info = @Info(title = "Portfolio Server Swagger", version = "1.0.0"),
     security = {@SecurityRequirement(name = HttpHeaders.AUTHORIZATION)},
     servers = {
       @Server(
-          url = "https://email-sender.giovannilamarmora.com",
-          description = "Staging Server URL"),
+          url = "https://portfolio.service.giovannilamarmora.com",
+          description = "Production Server URL"),
       @Server(url = "http://localhost:8080", description = "Local Server URL")
     })
 @SecurityScheme(

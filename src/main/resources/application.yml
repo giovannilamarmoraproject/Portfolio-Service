@@ -3,23 +3,6 @@ spring:
   application:
     name: Portfolio Service
     starter-log: true
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
-  sql:
-    init:
-      mode: always
-  servlet:
-    multipart:
-      max-file-size: 2MB
-      max-request-size: 2MB
 
 springdoc:
   api-docs:
@@ -45,11 +28,6 @@ logging:
       hibernate: ERROR
 
 rest:
-  scheduled:
-    CMS:
-      active: true
-      locale: "it-IT,en-GB"
-      cron: 0 0 1 * * MON
   client:
     strapi:
       active: true
@@ -60,19 +38,11 @@ rest:
         portfolioWork: /api/portfolio-works
         portfolioCourse: /api/portfolio-courses
         portfolioProject: /api/portfolio-projects
-    contentful:
-      baseUrl: https://cdn.contentful.com
-      entries: /spaces/uptyiu46x1l9/environments/master/entries
-      authToken: ${CONTENTFUL_AUTH_TOKEN}
 
 app:
   version: @project.version@ # Show Project Version
-  shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
   cache:
     active: false
     cron: 0 0 1 * * *
   exception:
     stacktrace: true # Active StackTrace in Response
-  # Cors status
-  cors: # Disabled
-    enabled: false

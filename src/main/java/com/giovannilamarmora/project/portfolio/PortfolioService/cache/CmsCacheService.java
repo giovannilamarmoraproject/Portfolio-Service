@@ -1,6 +1,7 @@
 package com.giovannilamarmora.project.portfolio.PortfolioService.cache;
 
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.ExternalService;
+import com.giovannilamarmora.project.portfolio.PortfolioService.app.model.CacheStatus;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.model.PortfolioData;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -34,8 +36,21 @@ public class CmsCacheService implements CmsService {
 
   @Caching(evict = @CacheEvict(value = PORTFOLIO_CACHE))
   @LogInterceptor(type = LogTimeTracker.ActionType.CACHE)
-  public void deleteUserCache() {
+  public Mono<CacheStatus> deleteCache() {
     LOG.info("[Caching] Deleting cache for {}", PORTFOLIO_CACHE);
-    Objects.requireNonNull(cacheManager.getCache(PORTFOLIO_CACHE)).clear();
+    if (!ObjectUtils.isEmpty(cacheManager) && !cacheManager.getCacheNames().isEmpty()) {
+      LOG.info("Deleting cache for {}", cacheManager.getCacheNames());
+      cacheManager
+          .getCacheNames()
+          .forEach(
+              cacheName -> {
+                if (!ObjectUtils.isEmpty(cacheName)
+                    && !ObjectUtils.isEmpty(cacheManager.getCache(cacheName))) {
+                  Objects.requireNonNull(cacheManager.getCache(cacheName)).clear();
+                }
+              });
+      return Mono.just(CacheStatus.OK);
+    }
+    return Mono.just(CacheStatus.KO);
   }
 }

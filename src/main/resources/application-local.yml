@@ -3,27 +3,6 @@ spring:
   application:
     name: Portfolio Service
     starter-log: true
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/portfolio
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    generate-ddl: true
-    show-sql: true
-    defer-datasource-initialization: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-  sql:
-    init:
-      mode: always
-  servlet:
-    multipart:
-      max-file-size: 1MB
-      max-request-size: 1MB
 
 springdoc:
   api-docs:
@@ -35,7 +14,7 @@ springdoc:
 filter:
   requestResponse:
     enabled: true
-    shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/images/*,*/favicon.ico"
+    shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/favicon.ico"
 
 logging:
   config: classpath:logback-spring.xml # classpath:logback-google.xml, classpath:logback-logtail.xml
@@ -50,11 +29,6 @@ logging:
       hibernate: ERROR
 
 rest:
-  scheduled:
-    CMS:
-      active: false
-      locale: "it-IT,en-GB"
-      cron: 0 0 1 * * MON
   client:
     strapi:
       active: true
@@ -65,19 +39,11 @@ rest:
         portfolioWork: /api/portfolio-works
         portfolioCourse: /api/portfolio-courses
         portfolioProject: /api/portfolio-projects
-    contentful:
-      baseUrl: https://cdn.contentful.com
-      entries: /spaces/uptyiu46x1l9/environments/master/entries
-      authToken: ${CONTENTFUL_AUTH_TOKEN}
 
 app:
   version: @project.version@ # Show Project Version
-  shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
   cache:
     active: false
     cron: 0 0 1 * * *
   exception:
     stacktrace: true # Active StackTrace in Response
-  # Cors status
-  cors: # Disabled
-    enabled: false
