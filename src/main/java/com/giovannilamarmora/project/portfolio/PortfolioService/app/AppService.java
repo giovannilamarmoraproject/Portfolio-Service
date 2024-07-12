@@ -2,11 +2,11 @@ package com.giovannilamarmora.project.portfolio.PortfolioService.app;
 
 import com.giovannilamarmora.project.portfolio.PortfolioService.cache.CmsCacheService;
 import com.giovannilamarmora.project.portfolio.PortfolioService.cache.CmsService;
+import io.github.giovannilamarmora.utils.context.TraceUtils;
 import io.github.giovannilamarmora.utils.generic.Response;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import io.github.giovannilamarmora.utils.interceptors.Logged;
-import io.github.giovannilamarmora.utils.interceptors.correlationID.CorrelationIdUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +34,7 @@ public class AppService {
               String message = "Data successfully founded for " + locale + "!";
               Response response =
                   new Response(
-                      HttpStatus.OK.value(),
-                      message,
-                      CorrelationIdUtils.getCorrelationId(),
-                      portfolioData);
+                      HttpStatus.OK.value(), message, TraceUtils.getSpanID(), portfolioData);
               return ResponseEntity.ok(response);
             })
         .doOnSuccess(
@@ -55,8 +52,7 @@ public class AppService {
             portfolioData -> {
               String message = "Cache successfully deleted!";
               Response response =
-                  new Response(
-                      HttpStatus.OK.value(), message, CorrelationIdUtils.getCorrelationId(), null);
+                  new Response(HttpStatus.OK.value(), message, TraceUtils.getSpanID(), null);
               return Mono.just(ResponseEntity.ok(response));
             })
         .doOnSuccess(responseResponseEntity -> LOG.info("\uD83D\uDCD2 Ending Deleting cache"));

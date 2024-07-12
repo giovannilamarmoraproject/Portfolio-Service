@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,11 @@ public class Redirect {
   @Operation(description = "API GET Portfolio", tags = "App")
   @LogInterceptor(type = LogTimeTracker.ActionType.CONTROLLER)
   public Mono<ResponseEntity<String>> redirectToSite(ServerHttpRequest request) {
-    LOG.info("Redirect ({}) to website", WebManager.getAddressFromRequest(request));
+    LOG.info(
+        "Redirect{} to website",
+        ObjectUtils.isEmpty(WebManager.getHostFromRequest(request))
+            ? ""
+            : " (" + WebManager.getHostFromRequest(request) + ")");
     return Mono.just(
         ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT)
             .location(URI.create("https://giovannilamarmora.github.io"))
