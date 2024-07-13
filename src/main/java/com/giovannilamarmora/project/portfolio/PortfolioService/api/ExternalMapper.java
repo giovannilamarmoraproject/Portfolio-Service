@@ -66,6 +66,7 @@ public class ExternalMapper {
       StrapiPortfolio portfolioProject) {
     return new PortfolioProject(
         portfolioProject.getTitle(),
+        portfolioProject.getSubtitle(),
         portfolioProject.getImage(),
         portfolioProject.getDescription(),
         portfolioProject.getButton_text(),
