@@ -16,6 +16,7 @@ public class StrapiPortfolio extends StrapiGeneric {
   private Long id;
   private String identifier;
   private String title;
+  private String subtitle;
   private String image;
   private String from;
   private String to;
