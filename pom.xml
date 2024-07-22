@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.giovannilamarmora.project.portfolio</groupId>
     <artifactId>Portfolio-Service</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <!-- <packaging>war</packaging> -->
     <packaging>jar</packaging>
     <name>Portfolio-Service</name>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>io.github.giovannilamarmora.utils</groupId>
             <artifactId>utils-code</artifactId>
-            <version>1.0.25</version>
+            <version>1.0.28</version>
         </dependency>
 
     </dependencies>
