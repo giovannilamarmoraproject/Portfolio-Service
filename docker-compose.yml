@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-  backend-service:
+  portfolio-service:
     container_name: portfolio-service
     image: ${DOCKER_REPOSITORY}:latest
     hostname: portfolio.service
@@ -21,9 +21,9 @@ services:
           - portfolio.service
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.access-sphere.rule=Host(`portfolio.service.stg.giovannilamarmora.com`)"
-      - "traefik.http.services.access-sphere.loadbalancer.server.port=8080"
-      - "traefik.http.routers.access-sphere.middlewares=geoblock@file"
+      - "traefik.http.routers.portfolio-service.rule=Host(`portfolio.service.stg.giovannilamarmora.com`)"
+      - "traefik.http.services.portfolio-service.loadbalancer.server.port=8080"
+      - "traefik.http.routers.portfolio-service.middlewares=geoblock@file"
 
 networks:
   docker-network:
