@@ -23,7 +23,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.portfolio-service.rule=Host(`portfolio.service.stg.giovannilamarmora.com`)"
       - "traefik.http.services.portfolio-service.loadbalancer.server.port=8080"
-      - "traefik.http.routers.portfolio-service.middlewares=geoblock@file"
+      - "traefik.http.routers.portfolio-service.middlewares=corsmiddleware@file,geoblock@file"
 
 networks:
   docker-network:
