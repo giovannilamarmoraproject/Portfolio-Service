@@ -1,4 +1,19 @@
 spring:
+  data:
+    cache:
+      active: false
+      cron: 0 0 1 * * *
+    redis:
+      enabled: false
+      cron: 0 0 1 * * *
+      host: pc-giovanni
+      json: false
+      password: password
+      port: 6379
+      sslEnabled: false
+      #sslTruststore: path of the truststore (.jks file)
+      #sslTruststorePassword: password of the trustore
+      username: username
   datasource:
     url: jdbc:h2:mem:mydb
     username: sa
@@ -39,9 +54,6 @@ rest:
 app:
   version: 1.0.0
   shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**,*/,*.css,*.js,*/img/*,*/favicon.ico"
-  cache:
-    active: false
-    cron: 0 0 1 * * *
   exception:
     stacktrace: true # Active StackTrace in Response
   # Cors status
