@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class CmsCacheService implements CmsService {
 
-  private static final String PORTFOLIO_CACHE = "Portfolio_Cache";
+  public static final String PORTFOLIO_CACHE = "Portfolio_Cache";
 
   private final Logger LOG = LoggerFilter.getLogger(this.getClass());
   @Autowired private CacheManager cacheManager;
@@ -34,10 +34,11 @@ public class CmsCacheService implements CmsService {
     return externalService.getAndMapPortfolioStrapiData(locale);
   }
 
+  @Override
   @Caching(evict = @CacheEvict(value = PORTFOLIO_CACHE))
   @LogInterceptor(type = LogTimeTracker.ActionType.CACHE)
   public Mono<CacheStatus> deleteCache() {
-    LOG.info("[Caching] Deleting cache for {}", PORTFOLIO_CACHE);
+    LOG.info("[Caching] Deleting cache for {} into Cache Manager", PORTFOLIO_CACHE);
     if (!ObjectUtils.isEmpty(cacheManager) && !cacheManager.getCacheNames().isEmpty()) {
       LOG.info("Deleting cache for {}", cacheManager.getCacheNames());
       cacheManager
