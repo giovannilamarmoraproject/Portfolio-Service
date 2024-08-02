@@ -3,6 +3,21 @@ spring:
   application:
     name: Portfolio Service
     starter-log: true
+  data:
+    cache:
+      active: false
+      cron: 0 0 1 * * *
+    redis:
+      enabled: false
+      cron: 0 0 1 * * *
+      host: pc-giovanni
+      json: false
+      password: password
+      port: 6379
+      sslEnabled: false
+      #sslTruststore: path of the truststore (.jks file)
+      #sslTruststorePassword: password of the trustore
+      username: username
 
 springdoc:
   api-docs:
@@ -41,8 +56,5 @@ rest:
 
 app:
   version: @project.version@ # Show Project Version
-  cache:
-    active: false
-    cron: 0 0 1 * * *
   exception:
     stacktrace: true # Active StackTrace in Response

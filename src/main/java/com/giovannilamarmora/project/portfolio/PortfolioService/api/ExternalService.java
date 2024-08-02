@@ -2,6 +2,7 @@ package com.giovannilamarmora.project.portfolio.PortfolioService.api;
 
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.StrapiService;
 import com.giovannilamarmora.project.portfolio.PortfolioService.api.strapi.dto.StrapiPortfolio;
+import com.giovannilamarmora.project.portfolio.PortfolioService.app.model.CacheStatus;
 import com.giovannilamarmora.project.portfolio.PortfolioService.app.model.PortfolioData;
 import com.giovannilamarmora.project.portfolio.PortfolioService.cache.CmsService;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
@@ -41,5 +42,10 @@ public class ExternalService implements CmsService {
                   ExternalMapper.mapPortfolioData(
                       portfolioData, portfolioWorks, portfolioCourses, portfolioProjects));
             });
+  }
+
+  @Override
+  public Mono<CacheStatus> deleteCache() {
+    return Mono.just(CacheStatus.OK);
   }
 }

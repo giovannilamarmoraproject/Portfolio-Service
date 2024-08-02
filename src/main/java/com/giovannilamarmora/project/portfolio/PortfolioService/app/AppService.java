@@ -1,6 +1,5 @@
 package com.giovannilamarmora.project.portfolio.PortfolioService.app;
 
-import com.giovannilamarmora.project.portfolio.PortfolioService.cache.CmsCacheService;
 import com.giovannilamarmora.project.portfolio.PortfolioService.cache.CmsService;
 import io.github.giovannilamarmora.utils.context.TraceUtils;
 import io.github.giovannilamarmora.utils.generic.Response;
@@ -12,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -20,7 +20,6 @@ import reactor.core.publisher.Mono;
 public class AppService {
   private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-  @Autowired private CmsCacheService cmsCacheService;
   @Autowired private CmsService cmsService;
 
   @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
@@ -46,7 +45,7 @@ public class AppService {
   public Mono<ResponseEntity<Response>> deleteCache() {
     LOG.info("\uD83D\uDCD2 Deleting cache");
 
-    return cmsCacheService
+    return cmsService
         .deleteCache()
         .flatMap(
             portfolioData -> {
@@ -56,5 +55,14 @@ public class AppService {
               return Mono.just(ResponseEntity.ok(response));
             })
         .doOnSuccess(responseResponseEntity -> LOG.info("\uD83D\uDCD2 Ending Deleting cache"));
+  }
+
+  @Scheduled(cron = "${spring.data.cache.cron}")
+  @LogInterceptor(type = LogTimeTracker.ActionType.SERVICE)
+  public void deleteCacheScheduler() {
+    LOG.info("\uD83D\uDE80 Scheduler Started, Deleting cache");
+    deleteCache()
+        .doOnSuccess(
+            responseResponseEntity -> LOG.info("\uD83D\uDE80 Scheduler Ending, Cache deleted"));
   }
 }
