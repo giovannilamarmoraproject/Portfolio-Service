@@ -29,6 +29,7 @@ public class ExternalMapper {
         portfolioData.getCurriculum_url(),
         portfolioData.getProfilePhoto_url(),
         portfolioData.getBiography(),
+        portfolioData.getCookie_policy(),
         portfolioData.getWork_projects(),
         portfolioData.getPersonal_projects(),
         portfolioData.getCourses(),

@@ -6,6 +6,7 @@ public record PortfolioData(
     String curriculum_url,
     String profilePhoto_url,
     String biography,
+    String cookie_policy,
     Integer work_projects,
     Integer personal_projects,
     Integer number_courses,
