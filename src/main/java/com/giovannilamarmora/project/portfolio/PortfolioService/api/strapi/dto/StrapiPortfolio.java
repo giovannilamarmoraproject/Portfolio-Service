@@ -31,4 +31,5 @@ public class StrapiPortfolio extends StrapiGeneric {
   private Integer work_projects;
   private Integer personal_projects;
   private Integer courses;
+  private String cookie_policy;
 }
