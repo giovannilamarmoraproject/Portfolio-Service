@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.9'
 services:
   portfolio-service:
     container_name: portfolio-service
@@ -20,16 +20,18 @@ services:
       - REDIS_CACHE_HOST=${REDIS_CACHE_HOST}
       - APP_ENV=${APP_ENV}
       - STRAPI_AUTH_TOKEN=${STRAPI_AUTH_TOKEN}
+    volumes:
+      # Monta il volume "microservice" nella cartella /secrets (in sola lettura)
+      - microservice:/secrets:ro
     networks:
       docker-network:
         aliases:
           - portfolio.service
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.portfolio-service.rule=Host(`portfolio.service.stg.giovannilamarmora.com`)"
-      - "traefik.http.services.portfolio-service.loadbalancer.server.port=8080"
-      - "traefik.http.routers.portfolio-service.middlewares=corsmiddleware@file,geoblock@file"
 
 networks:
   docker-network:
+    external: true
+
+volumes:
+  microservice:
     external: true
