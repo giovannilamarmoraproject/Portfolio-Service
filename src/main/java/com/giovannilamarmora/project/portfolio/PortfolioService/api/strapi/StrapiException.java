@@ -9,7 +9,7 @@ import io.github.giovannilamarmora.utils.exception.UtilsException;
 import io.github.giovannilamarmora.utils.interceptors.LogInterceptor;
 import io.github.giovannilamarmora.utils.interceptors.LogTimeTracker;
 import io.github.giovannilamarmora.utils.utilities.MapperUtils;
-import io.github.giovannilamarmora.utils.utilities.Utilities;
+import io.github.giovannilamarmora.utils.utilities.ObjectToolkit;
 import org.springframework.http.HttpStatus;
 
 public class StrapiException extends UtilsException {
@@ -27,7 +27,7 @@ public class StrapiException extends UtilsException {
   @LogInterceptor(type = LogTimeTracker.ActionType.VALIDATOR)
   public static void validateAndReturnError(Throwable throwable) {
     String messageBody = throwable.getMessage().split("and body message ")[1];
-    if (Utilities.isInstanceOf(messageBody, new TypeReference<StrapiError>() {})) {
+    if (ObjectToolkit.isInstanceOf(messageBody, new TypeReference<StrapiError>() {})) {
       StrapiError response;
       try {
         response = MapperUtils.mapper().build().readValue(messageBody, StrapiError.class);
