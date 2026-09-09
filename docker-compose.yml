@@ -1,3 +1,5 @@
+name: portfolio-service
+
 version: '3.9'
 services:
   portfolio-service:
@@ -19,7 +21,22 @@ services:
       - REDIS_CACHE_USERNAME=${REDIS_CACHE_USERNAME}
       - REDIS_CACHE_HOST=${REDIS_CACHE_HOST}
       - APP_ENV=${APP_ENV}
+      - STRAPI_BASE_URL=${STRAPI_BASE_URL}
       - STRAPI_AUTH_TOKEN=${STRAPI_AUTH_TOKEN}
+
+    labels:
+      # 1. Attiva il monitoraggio di WUD
+      - "wud.watch=true"
+      # 2. Monitora specificamente il tag latest
+      - "wud.tag.include=^latest$"
+      # 3. Controlla le variazioni di hash digest SHA-256
+      - "wud.watch.digest=true"
+      # 4. Attiva il trigger di deploy automatico
+      - "wud.trigger.docker.local.enabled=true"
+      # 5. Forza l'esecuzione automatica immediata al rilevamento
+      - "wud.trigger.docker.local.auto=true"
+      - "wud.trigger.docker.local.threshold=all"
+
     volumes:
       # Monta il volume "microservice" nella cartella /secrets (in sola lettura)
       - microservice:/secrets:ro
