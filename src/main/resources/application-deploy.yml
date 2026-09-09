@@ -32,7 +32,7 @@ filter:
     shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**"
 
 logging:
-  config: classpath:logback-google.xml # classpath:logback-google.xml, classpath:logback-logtail.xml
+  config: ${LOGBACK_FILE:classpath:logback-google.xml} # classpath:logback-google.xml, classpath:logback-logtail.xml
   level:
     com.giovannilamarmora.project.portfolio.PortfolioService: ${LOGGING_LEVEL}
     io.github.giovannilamarmora.utils: ${LOGGING_LEVEL}

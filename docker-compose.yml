@@ -4,14 +4,15 @@ version: '3.9'
 services:
   portfolio-service:
     container_name: portfolio-service
-    image: ${DOCKER_REPOSITORY}:latest
+    image: ${DOCKER_REPOSITORY}:${APP_VERSION:-latest}
     hostname: portfolio.service
     ports:
-      - "8006:8080"
+      - ${PORT:-8006:8080}
     environment:
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
-      - LOGGING_LEVEL=${LOGGING_LEVEL}
-      - SHOW_UTILS_EXCEPTION_STACKTRACE=${SHOW_UTILS_EXCEPTION_STACKTRACE}
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-deploy}
+      - LOGGING_LEVEL=${LOGGING_LEVEL:-INFO}
+      - LOGBACK_FILE=${LOGBACK_FILE:-classpath:logback-spring.xml}
+      - SHOW_UTILS_EXCEPTION_STACKTRACE=${SHOW_UTILS_EXCEPTION_STACKTRACE:-false}
       - GCLOUD_PROJECT=${GCLOUD_PROJECT}
       - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - CACHE_ENABLE=${CACHE_ENABLE}
@@ -20,7 +21,7 @@ services:
       - REDIS_CACHE_PORT=${REDIS_CACHE_PORT}
       - REDIS_CACHE_USERNAME=${REDIS_CACHE_USERNAME}
       - REDIS_CACHE_HOST=${REDIS_CACHE_HOST}
-      - APP_ENV=${APP_ENV}
+      - APP_ENV=${APP_ENV:-Production}
       - STRAPI_BASE_URL=${STRAPI_BASE_URL}
       - STRAPI_AUTH_TOKEN=${STRAPI_AUTH_TOKEN}
 
