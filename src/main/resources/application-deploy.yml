@@ -1,8 +1,5 @@
-env: ${APP_ENV:Deploy} # Used for Google Cloud LOG
+env: ${APP_ENV:Production} # Used for Google Cloud LOG
 spring:
-  application:
-    name: Portfolio Service
-    starter-log: true
   data:
     cache:
       active: ${CACHE_ENABLE}
@@ -19,20 +16,13 @@ spring:
       #sslTruststorePassword: password of the trustore
       username: ${REDIS_CACHE_USERNAME}
 
-springdoc:
-  api-docs:
-    path: /api-docs
-  swagger-ui:
-    path: /swagger-ui.html
-    disable-swagger-default-url: true
-
 filter:
   requestResponse:
     enabled: true
     shouldNotFilter: "**/swagger-ui/**,/api-docs,**/api-docs/**"
 
 logging:
-  config: ${LOGBACK_FILE:classpath:logback-google.xml} # classpath:logback-google.xml, classpath:logback-logtail.xml
+  config: ${LOGBACK_FILE:classpath:logback-spring.xml} # classpath:logback-google.xml, classpath:logback-logtail.xml
   level:
     com.giovannilamarmora.project.portfolio.PortfolioService: ${LOGGING_LEVEL}
     io.github.giovannilamarmora.utils: ${LOGGING_LEVEL}
@@ -49,11 +39,6 @@ rest:
       active: true
       baseUrl: ${STRAPI_BASE_URL:http://app.strapi.cms:1337}
       bearer: ${STRAPI_AUTH_TOKEN}
-      path:
-        portfolioConfig: /api/portfolio-data
-        portfolioWork: /api/portfolio-works
-        portfolioCourse: /api/portfolio-courses
-        portfolioProject: /api/portfolio-projects
 
 app:
   version: @project.version@ # Show Project Version
